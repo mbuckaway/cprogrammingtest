@@ -6,6 +6,11 @@
  * Implement a fixed-size circular buffer of integers.
  * cb_push returns 0 on success, -1 if full.
  * cb_pop  returns 0 on success, -1 if empty.
+ * 
+ * full is defined as head==tail and count = size
+ * empty is defined as head==tail and count = 0
+ * 
+ * The buffer is circular. So, as data is pushed and popped, it may contain new data or not
  */
 typedef struct {
     int *buffer;
@@ -18,12 +23,44 @@ typedef struct {
 void cb_init(CircularBuffer *cb, int *backing_array, int size)
 {
     /* TODO: implement this */
+    cb->head = 0;
+    cb->tail = 0;
+    cb->size = size;
+    cb->count = 0;
 }
 
+/**
+ * Push an item onto the buffer checking for overruns
+ * Returns 0 on success, -1 if full.
+ * We increment the head and make sure it stays in bounds
+ */
 int cb_push(CircularBuffer *cb, int value)
 {
-    /* TODO: implement this */
-    return -1;
+    int isFull = 0;
+
+    // Insert the data
+    cb->buffer[cb->head] = value;
+    // Adjust the head pointer
+    cb->head++;
+
+    // Check if the head pointer goes off the end, and reset it
+    if (cb->head>=cb->size) {
+            cb->head = 0;
+    }
+
+    /* Inc counter as we are adding one */
+    cb->count++;
+
+    /* Check if it now full, make sure count never exceeds size */
+    if (cb->count > cb->size) {
+        cb->count = cb->size;
+    }
+
+    if ((cb->head == cb->tail) && (cb->count = cb->size)) {
+        isFull = -1;
+    }
+
+    return isFull;
 }
 
 int cb_pop(CircularBuffer *cb, int *out)

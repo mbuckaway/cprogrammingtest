@@ -9,7 +9,20 @@
 int is_power_of_two(unsigned int n)
 {
     /* TODO: implement this */
-    return -1;
+    /* 
+        If we get 0001000 it is true
+        If we get 0001100 it is false
+        Try and check if and only it one bit anywhere is set
+        One way is to shift the bits until we have a 0 value. Count the number of bits. Must be 1.
+        It uses a loop, but works.
+    */
+    int bits = 0;
+    while (n > 0) {
+        if (n&0x1) bits++;
+        n = n >> 1;
+    }
+
+    return bits == 1;
 }
 
 int main(void)
