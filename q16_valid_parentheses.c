@@ -10,25 +10,9 @@
  */
 int is_valid(const char *s)
 {
-    char stack[256];
-    int top = 0;
-    int len = strlen(s);
-
-    for (int i = 0; i < len; i++) {
-        char c = s[i];
-        if (c == '(' || c == '{' || c == '[') {
-            stack[top++] = c;
-        } else {
-            if (top == 0)
-                return 0;
-            char open = stack[--top];
-            if ((c == ')' && open != '(') ||
-                (c == '}' && open != '{') ||
-                (c == ']' && open != '['))
-                return 0;
-        }
-    }
-    return top == 0 ? 1 : 0;
+    /* TODO: implement this */
+    (void)s;
+    return 0;
 }
 
 int main(void)

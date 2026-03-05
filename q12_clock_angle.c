@@ -11,13 +11,10 @@
  */
 double clock_angle(int h, int m)
 {
-    h = h % 12;
-    double hour_deg = h * 30.0 + m * 0.5;
-    double min_deg = m * 6.0;
-    double angle = fabs(hour_deg - min_deg);
-    if (angle > 180.0)
-        angle = 360.0 - angle;
-    return angle;
+    /* TODO: implement this */
+    (void)h;
+    (void)m;
+    return 0.0;
 }
 
 int main(void)

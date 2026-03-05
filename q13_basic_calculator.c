@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <ctype.h>
 
 /*
  * Q13 — Basic Calculator II
@@ -10,42 +9,9 @@
  */
 int calculate(const char *s)
 {
-    int stack[256];
-    int top = 0;
-    int num = 0;
-    char op = '+';
-
-    for (int i = 0; s[i] != '\0'; i++) {
-        char c = s[i];
-
-        if (isdigit(c)) {
-            num = num * 10 + (c - '0');
-        }
-
-        if ((!isdigit(c) && c != ' ') || s[i + 1] == '\0') {
-            switch (op) {
-            case '+':
-                stack[top++] = num;
-                break;
-            case '-':
-                stack[top++] = -num;
-                break;
-            case '*':
-                stack[top - 1] *= num;
-                break;
-            case '/':
-                stack[top - 1] /= num;
-                break;
-            }
-            op = c;
-            num = 0;
-        }
-    }
-
-    int result = 0;
-    for (int i = 0; i < top; i++)
-        result += stack[i];
-    return result;
+    /* TODO: implement this */
+    (void)s;
+    return 0;
 }
 
 int main(void)

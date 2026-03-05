@@ -8,46 +8,12 @@
  */
 int top_k_frequent(int *nums, int n, int k, int *result)
 {
-    int values[256];
-    int counts[256];
-    int unique = 0;
-
-    /* Build frequency table */
-    for (int i = 0; i < n; i++) {
-        int found = 0;
-        for (int j = 0; j < unique; j++) {
-            if (values[j] == nums[i]) {
-                counts[j]++;
-                found = 1;
-                break;
-            }
-        }
-        if (!found) {
-            values[unique] = nums[i];
-            counts[unique] = 1;
-            unique++;
-        }
-    }
-
-    /* Selection sort by count descending */
-    for (int i = 0; i < unique - 1; i++) {
-        int max_idx = i;
-        for (int j = i + 1; j < unique; j++) {
-            if (counts[j] > counts[max_idx])
-                max_idx = j;
-        }
-        if (max_idx != i) {
-            int tmp;
-            tmp = counts[i]; counts[i] = counts[max_idx]; counts[max_idx] = tmp;
-            tmp = values[i]; values[i] = values[max_idx]; values[max_idx] = tmp;
-        }
-    }
-
-    /* Copy top k values to result */
-    for (int i = 0; i < k && i < unique; i++)
-        result[i] = values[i];
-
-    return k < unique ? k : unique;
+    /* TODO: implement this */
+    (void)nums;
+    (void)n;
+    (void)k;
+    (void)result;
+    return 0;
 }
 
 int main(void)
